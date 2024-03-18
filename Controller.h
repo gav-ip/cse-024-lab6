@@ -3,7 +3,7 @@
 
 #include <GL/freeglut.h>
 #include "AppController.h"
-#include "ColorSelector.h"
+#include "ColorPicker.h"
 #include "Toolbar.h"
 #include "Canvas.h"
 

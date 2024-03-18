@@ -39,7 +39,6 @@ public:
         blueAxis = Rectangle(-0.7f, -0.94f, 1.4f, 0.03f, Color(0.7f, 0.7f, 0.7f));
     }
 
-    
     Color getCurrentColor(){
         return currentColor;
     }
@@ -53,26 +52,28 @@ public:
         // y represents the value multiplied to get the rgb value
         // 1.4y = 1.0 
         // y = 0.714 
-        // 0.695 * 0.714
-        // length 
+        // 0.695 * 0.714 + 0.5
         float length = 1.0 / 1.4;
         if (redButton.contains(x,y) && redAxis.contains(x,y)){
             redButton.setX(x);
             redValue = (x * length) + 0.5;
             std::cout << "red value: " << redValue << std::endl;
             setCurrentColor(redValue,greenValue,blueValue);
+            resultColor.setColor(currentColor);
         }
 
         if (greenButton.contains(x,y) && greenAxis.contains(x,y)){
             greenButton.setX(x);
             greenValue = (x * length) + 0.5;
             setCurrentColor(redValue,greenValue,blueValue);
+            resultColor.setColor(currentColor);
         }
 
         if (blueButton.contains(x,y) && blueAxis.contains(x,y)){
             blueButton.setX(x);
             blueValue = (x * length) + 0.5;
             setCurrentColor(redValue,greenValue,blueValue);
+            resultColor.setColor(currentColor);
         }
     }
 

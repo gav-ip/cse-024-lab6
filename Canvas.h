@@ -14,7 +14,7 @@ private:
 
 public:
     Canvas(){
-        area = Rectangle(-0.8f, 1.0f, 1.8f, 1.8f, Color(1.0f, 1.0f, 1.0f));
+        area = Rectangle(-0.8f, 1.0f, 1.8f, 1.4f, Color(1.0f, 1.0f, 1.0f));
         pCounter = 0;
     }
 

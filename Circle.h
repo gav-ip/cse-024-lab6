@@ -7,13 +7,13 @@
 
 struct Circle {
 private:
-    float x;
-    float y;
     float radius;
     Color color;
     bool selected;
+    float x;
+    float y;
 
-public:
+public:    
     Circle() {
         x = 0.0f;
         y = 0.0f;
@@ -53,6 +53,18 @@ public:
         } else {
             return false;
         }
+    }
+    void select(){
+        selected = true;
+    }
+    void deselect(){
+        selected = false;
+    }
+    float getX(){
+        return x;
+    }
+    void setX(float x){
+        this->x = x;
     }
 };
 

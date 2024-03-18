@@ -21,9 +21,7 @@ struct Controller : public AppController {
             toolbar.handleMouseClick(x, y);
         } else if (canvas.contains(x, y)){
             canvas.handleMouseClick(x, y, toolbar.getSelectedTool(), colorSelector.getCurrentColor());
-        } else if (colorSelector.contains(x, y)){
-            colorSelector.handleMouseClick(x, y);
-        }
+        } 
     }
 
     void mouseMotion( float x, float y ) {
@@ -31,6 +29,9 @@ struct Controller : public AppController {
             if (toolbar.getSelectedTool() == PENCIL || toolbar.getSelectedTool() == ERASER){
                 canvas.handleMouseClick(x, y, toolbar.getSelectedTool(), colorSelector.getCurrentColor());
             }
+        } 
+        else if (colorSelector.contains(x, y)){
+            colorSelector.handleMouseClick(x, y);
         }
     }
 

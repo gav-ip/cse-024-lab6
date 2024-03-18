@@ -15,14 +15,14 @@ public:
     Point() {
         x = 0.0f;
         y = 0.0f;
-        thickness = 4.0f;
+        thickness = 10.0f;
     }
 
     Point(float x, float y, Color color) {
         this->x = x;
         this->y = y;
         this->color = color;
-        thickness = 4.0f;
+        thickness = 10.0f;
     }
 
     Point(float x, float y, Color color, float thickness) {

@@ -42,6 +42,12 @@ public:
     void deselect() {
         selected = false;
     }
+    float getX(){
+        return x;
+    }
+    float getWidth(){
+        return w;
+    }
 
     void draw() {
         glColor3f(color.getR(), color.getG(), color.getB());

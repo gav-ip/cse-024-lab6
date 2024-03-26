@@ -4,6 +4,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include <string.h>
+#include <iostream>
 
 struct ColorSelector {
 private:
@@ -32,13 +33,12 @@ public:
     ColorSelector(){
         area = Rectangle(-0.8f, -0.4f, 1.8f, 0.6f, Color(0.0f, 0.0f, 0.1f));
         resultColor = Rectangle(-0.7f, -0.45f, 1.6f, 0.1f, currentColor);
-        redButton = Circle(-0.7f, -0.65f, 0.04f, Color (1.0f, 0.0f, 0.0f));
-        greenButton = Circle(-0.7f, -0.80f, 0.04f, Color (0.0f, 1.0f, 0.0f));
-        blueButton = Circle(-0.7f, -0.95f, 0.04f, Color (0.0f, 0.0f, 1.0f));
-        redAxis = Rectangle(-0.7f, -0.64f, 1.4f, 0.03f, Color(0.7f, 0.7f, 0.7f));
-        greenAxis = Rectangle(-0.7f, -0.79f, 1.4f, 0.03f, Color(0.7f, 0.7f, 0.7f));
-        // redDisplay = Button("255", 0.75f, -0.5f);
-        blueAxis = Rectangle(-0.7f, -0.94f, 1.4f, 0.03f, Color(0.7f, 0.7f, 0.7f));
+        redButton = Circle(-0.75f, -0.75f, 0.03f, Color (1.0f, 0.0f, 0.0f));
+        greenButton = Circle(-0.75f, -0.85f, 0.03f, Color (0.0f, 1.0f, 0.0f));
+        blueButton = Circle(-0.75f, -0.95f, 0.03f, Color (0.0f, 0.0f, 1.0f));
+        redAxis = Rectangle(-0.75f, -0.74f, 0.5f, 0.03f, Color(0.7f, 0.7f, 0.7f));
+        greenAxis = Rectangle(-0.75f, -0.84f, 0.5f, 0.03f, Color(0.7f, 0.7f, 0.7f));
+        blueAxis = Rectangle(-0.75f, -0.94f, 0.5f, 0.03f, Color(0.7f, 0.7f, 0.7f));
     }
 
     Color getCurrentColor(){
@@ -52,14 +52,22 @@ public:
         // use the x position to determine an rgb value 0.0 - 1.0
         // total length of axis = 1.4
         // y represents the value multiplied to get the rgb value
-        // 1.4y = 1.0 
-        // y = 0.714 
-        // 0.695 * 0.714 
-        // rgb value = 0.695 * y + 0.5 (gets the rgb value roughly to 1.0)
-        float length = 1.0 / 1.4;
+        // 0.5y = 1.0 
+        // y = 2
+        float length = 1.0 / (redAxis.getWidth());
+
+        //get max x value
+        float xMax = (redAxis.getX()) + (redAxis.getWidth());
+
+        // (max x-value)[-0.25] * 2  = -0.5 ... this is the value we need to equal 1.0
+        // rgb value = [-0.5 + length] (gets the rgb value roughly to 1.0)
+        float rgbAdd = (xMax * length) + length;
+
+        
         if (redButton.contains(x,y) && redAxis.contains(x,y)){
             redButton.setX(x);
-            redValue = (x * length) + 0.5;
+            redValue = (x * length) + rgbAdd;
+            std::cout << redValue << std::endl;
             setCurrentColor(redValue,greenValue,blueValue);
             resultColor.setColor(currentColor);
             // calculate the rgb value (0-255):
@@ -68,14 +76,14 @@ public:
 
         if (greenButton.contains(x,y) && greenAxis.contains(x,y)){
             greenButton.setX(x);
-            greenValue = (x * length) + 0.5;
+            greenValue = (x * length) + rgbAdd;
             setCurrentColor(redValue,greenValue,blueValue);
             resultColor.setColor(currentColor);
         }
 
         if (blueButton.contains(x,y) && blueAxis.contains(x,y)){
             blueButton.setX(x);
-            blueValue = (x * length) + 0.5;
+            blueValue = (x * length) + rgbAdd;
             setCurrentColor(redValue,greenValue,blueValue);
             resultColor.setColor(currentColor);
         }

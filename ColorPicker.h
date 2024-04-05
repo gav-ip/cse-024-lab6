@@ -31,8 +31,8 @@ private:
 
 public:
     ColorSelector(){
-        area = Rectangle(-0.8f, -0.4f, 1.8f, 0.6f, Color(0.0f, 0.0f, 0.1f));
-        resultColor = Rectangle(-0.7f, -0.45f, 1.6f, 0.1f, currentColor);
+        area = Rectangle(-0.8f, -0.70f, 1.8f, 0.3f, Color(0.3f, 0.3f, 0.3f));
+        resultColor = Rectangle(-0.2f, -0.73f, 0.1f, 0.25f, currentColor);
         redButton = Circle(-0.75f, -0.75f, 0.03f, Color (1.0f, 0.0f, 0.0f));
         greenButton = Circle(-0.75f, -0.85f, 0.03f, Color (0.0f, 1.0f, 0.0f));
         blueButton = Circle(-0.75f, -0.95f, 0.03f, Color (0.0f, 0.0f, 1.0f));
@@ -67,7 +67,6 @@ public:
         if (redButton.contains(x,y) && redAxis.contains(x,y)){
             redButton.setX(x);
             redValue = (x * length) + rgbAdd;
-            std::cout << redValue << std::endl;
             setCurrentColor(redValue,greenValue,blueValue);
             resultColor.setColor(currentColor);
             // calculate the rgb value (0-255):
